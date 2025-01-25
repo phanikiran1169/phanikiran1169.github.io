@@ -21,12 +21,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Manipulation">
-  <meta property="og:description" content="Developed">
+  <meta property="og:title" content="Planning using Dubins and RRT*">
+  <meta property="og:description" content="3D planning algorithm that avoids obstacles while meeting minimum turning radius and boundary point constraints">
   <meta property="og:image" content="https://avatars2.githubusercontent.com/u/41103290">
 
-  <title>Manipulation</title>
-  <meta name="description" content="Developed">
+  <title>Planning using Dubins and RRT*</title>
+  <meta name="description" content="3D planning algorithm that avoids obstacles while meeting minimum turning radius and boundary point constraints">
 
   <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
 
@@ -74,12 +74,101 @@
 
 </nav>
     <div class="col-lg-10 mx-auto mt-5 markdown-body">
-  <h1 id="manipulation">Manipulation</h1>
+  <h3 id="overview">Overview</h3>
+<p>This project focuses on developing a 3D obstacle avoidance algorithm by integrating Rapidly-Exploring Random Trees (RRT<em>) with Dubins paths. RRT</em> serves as the planning framework, while Dubins paths handle trajectory expansion between points, ensuring smooth and minimal-length paths under curvature constraints. The closed-form solution of Dubins paths reduces computation time during tree expansion.</p>
 
-<p><br /></p>
-<h3 id="brief-overview">Brief overview</h3>
-<p><br />
-Embarking on a mission</p>
+<p>The algorithm generates trajectories, checks for collisions with static obstacles, and integrates valid paths into the planning tree. It has been tested in various scenarios with different initial and final configurations, obstacle placements, and curvature constraints. In 3D environments, the algorithm uses a combination of planar maneuvers to construct a feasible trajectory.</p>
+
+<p>While RRT* guarantees asymptotic optimality, the constraints on simulation time result in sub-optimal solutions. Challenges include slower convergence in 3D due to increased state-space dimensions and the inability to find feasible trajectories in certain configurations. Future enhancements aim to improve convergence rates, extend the method to dynamic environments, and incorporate dynamic constraints for real-world applications.</p>
+
+<h3 id="pseudo-code-for-rrt">Pseudo-code for RRT*</h3>
+
+<ol>
+  <li><strong>Initialization</strong>
+    <ul>
+      <li>Initialize the tree <code class="language-plaintext highlighter-rouge">T</code> with the initial state <code class="language-plaintext highlighter-rouge">Xinit</code></li>
+    </ul>
+  </li>
+  <li><strong>Main Loop</strong><br />
+For <code class="language-plaintext highlighter-rouge">k = 1</code> to <code class="language-plaintext highlighter-rouge">K</code> (number of iterations)
+    <ul>
+      <li>Generate a random state <code class="language-plaintext highlighter-rouge">Xrand</code> using <code class="language-plaintext highlighter-rouge">RANDOM_STATE()</code></li>
+      <li>Find the nearest node <code class="language-plaintext highlighter-rouge">Xnear</code> in <code class="language-plaintext highlighter-rouge">T</code> using <code class="language-plaintext highlighter-rouge">NEAREST_NEIGHBOUR(Xrand, T)</code></li>
+      <li>
+        <p>Steer from <code class="language-plaintext highlighter-rouge">Xnear</code> towards <code class="language-plaintext highlighter-rouge">Xrand</code> to create a new state <code class="language-plaintext highlighter-rouge">Xnew</code> using <code class="language-plaintext highlighter-rouge">STEER(Xrand, Xnear)</code></p>
+      </li>
+      <li>If <code class="language-plaintext highlighter-rouge">Xnew</code> is collision-free
+        <ul>
+          <li>Identify nearby nodes <code class="language-plaintext highlighter-rouge">Lnear</code> within a radius <code class="language-plaintext highlighter-rouge">R</code> using <code class="language-plaintext highlighter-rouge">NEAR_NODES(T, Xnew, V)</code></li>
+          <li>Choose the best parent for <code class="language-plaintext highlighter-rouge">Xnew</code> from <code class="language-plaintext highlighter-rouge">Lnear</code> using <code class="language-plaintext highlighter-rouge">CHOOSE_PARENT(T, Xnew, Lnear)</code></li>
+          <li>Add <code class="language-plaintext highlighter-rouge">Xnew</code> to the tree <code class="language-plaintext highlighter-rouge">T</code> using <code class="language-plaintext highlighter-rouge">INSERT_NODE(Xnew)</code></li>
+          <li>Rewire the tree within radius <code class="language-plaintext highlighter-rouge">R</code> to update parent connections using <code class="language-plaintext highlighter-rouge">REWIRE(T, Xnew, Lnear)</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Output</strong>
+    <ul>
+      <li>Return the tree <code class="language-plaintext highlighter-rouge">T</code></li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="pseudo-code-for-3d-dubins-path-planning">Pseudo-code for 3D Dubins Path Planning</h3>
+
+<ol>
+  <li><strong>Input Definitions</strong>
+    <ul>
+      <li>Define the initial point <code class="language-plaintext highlighter-rouge">(xi, yi, zi, θi, φi)</code> and the final point <code class="language-plaintext highlighter-rouge">(xf, yf, zf, θf, φf)</code></li>
+    </ul>
+  </li>
+  <li><strong>Coordinate Transformation</strong>
+    <ul>
+      <li>Translate and rotate the coordinate system to align the local frame with the initial point</li>
+      <li>Define the local frame with <code class="language-plaintext highlighter-rouge">xt</code>-axis aligned to the velocity vector at the initial point</li>
+    </ul>
+  </li>
+  <li><strong>Trajectory Planning</strong>
+    <ul>
+      <li><strong>T-plane Maneuver</strong>
+        <ul>
+          <li>Restrict motion to the horizontal plane <code class="language-plaintext highlighter-rouge">(xt, yt)</code></li>
+          <li>Compute the switching point where the trajectory intersects the P-plane tangentially</li>
+          <li>Ensure that the flight path angle <code class="language-plaintext highlighter-rouge">φ</code> remains zero throughout this maneuver</li>
+        </ul>
+      </li>
+      <li><strong>P-plane Maneuver</strong>
+        <ul>
+          <li>Define a new local coordinate frame at the switching point</li>
+          <li>Reduce the problem to a 2D Dubins path in the P-plane</li>
+          <li>Divide the path into <strong>CSC segments</strong>
+            <ul>
+              <li><strong>Segment 1</strong>: An arc from the switching point to the start of the straight-line segment</li>
+              <li><strong>Segment 2</strong>: A straight-line segment</li>
+              <li><strong>Segment 3</strong>: An arc from the straight-line segment to the final point</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Path Generation</strong>
+    <ul>
+      <li>Compute the length of each segment</li>
+      <li>Ensure curvature constraints are satisfied</li>
+    </ul>
+  </li>
+  <li><strong>Output</strong>
+    <ul>
+      <li>Combine the T-plane and P-plane paths to generate the final 3D Dubins path</li>
+      <li>Return the 3D path</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="results">Results</h3>
+
+<h3 id="references-and-acknowledgment">References and Acknowledgment</h3>
 
 </div>
   </main>

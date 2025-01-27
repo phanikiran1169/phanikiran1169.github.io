@@ -21,12 +21,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Projects">
-  <meta property="og:description" content="Hello this is Phani">
-  <meta property="og:image" content="https://avatars2.githubusercontent.com/u/41103290">
+  <meta property="og:title" content="Planning in 2D dynamic obstacle environemnt using Fuzzy logic controller">
+  <meta property="og:description" content="Real time planning in 2D while avoiding obstacles">
+  <meta property="og:image" content="/assets/Vid2.gif">
 
-  <title>Projects</title>
-  <meta name="description" content="Hello this is Phani">
+  <title>Planning in 2D dynamic obstacle environemnt using Fuzzy logic controller</title>
+  <meta name="description" content="Real time planning in 2D while avoiding obstacles">
 
   <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
 
@@ -73,39 +73,65 @@
   </div>
 
 </nav>
-    
-<div class="card-columns m-3 mt-5">
+    <div class="col-lg-10 mx-auto mt-5 markdown-body">
+  <h3 id="overview">Overview</h3>
 
-  <!-- Remote Projects -->
-  
+<p>This project focuses on building a fuzzy logic controller (FLC) to guide a robot from a start position to a goal while avoiding static and dynamic obstacles. The controller is designed to work in real-time and is expected to handle uncertainities in input data.</p>
 
-  <!-- Local Projects -->
-  <div class="wow animated fadeIn" data-wow-delay=".15s">
-  <a href="/projects/0-youbot-manipulation" class="project card text-themed"><img id="planning-using-dubins-and-rrt-img" class="card-img-top" src="/assets/Img8.png" alt="Planning using Dubins and RRT*" /><div class="card-body">
-      <h5 id="planning-using-dubins-and-rrt-name" class="card-title">Planning using Dubins and RRT*
-      </h5>
-      <p id="planning-using-dubins-and-rrt-desc" class="card-text">3D planning algorithm that avoids obstacles while meeting minimum turning radius and boundary conditions</p>
-      <p id="planning-using-dubins-and-rrt-tools" class="card-text"><span class="badge badge-pill text-primary border border-primary ml-1">Python</span><span class="badge badge-pill text-primary border border-primary ml-1">Path Planning</span></p>
-    </div>
-  </a>
+<p>The robot uses three key sensor readings: distances to obstacles in the Front, Front Left Diagonal, and Front Right Diagonal directions. These, along with additional inputs like Distance to Goal (straight-line distance to the goal), Angle to Goal (angle between the robot’s heading and the goal direction), and Turn (preferred turning direction), are processed by the FLC. The output of the controller is the steering angle that guides the robot.</p>
+
+<div style="display: flex; flex-wrap: wrap; gap: 5px;">
+  <img src="http://localhost:4000/assets/Img11.png" alt="Description 2" style="width: auto; max-width: 330px; height: auto;" />
+  <img src="http://localhost:4000/assets/Img9.png" alt="Description 3" width="330" />
 </div>
 
-  <div class="wow animated fadeIn" data-wow-delay=".15s">
-  <a href="/projects/1-fuzzy-logic-planning" class="project card text-themed"><img id="planning-in-2d-dynamic-obstacle-environemnt-using-fuzzy-logic-controller-img" class="card-img-top" src="/assets/Vid2.gif" alt="Planning in 2D dynamic obstacle environemnt using Fuzzy logic controller" /><div class="card-body">
-      <h5 id="planning-in-2d-dynamic-obstacle-environemnt-using-fuzzy-logic-controller-name" class="card-title">Planning in 2D dynamic obstacle environemnt using Fuzzy logic controller
-      </h5>
-      <p id="planning-in-2d-dynamic-obstacle-environemnt-using-fuzzy-logic-controller-desc" class="card-text">Real time planning in 2D while avoiding obstacles</p>
-      <p id="planning-in-2d-dynamic-obstacle-environemnt-using-fuzzy-logic-controller-tools" class="card-text"><span class="badge badge-pill text-primary border border-primary ml-1">Matlab</span><span class="badge badge-pill text-primary border border-primary ml-1">Path Planning</span></p>
-    </div>
-  </a>
+<p>The decision-making is based on a set of simple rules:</p>
+<ul>
+  <li>If there are no nearby obstacles, the robot turns to face the goal.</li>
+  <li>If a new obstacle is detected, it turns toward the goal.</li>
+  <li>If the same obstacle as before is detected, the robot repeats the previous turn.</li>
+</ul>
+
+<p>The controller uses the Mamdani approach, representing input and output variables as membership functions. The rule base is split into two parts: one for avoiding obstacles and another for moving toward the goal. For example:</p>
+<ul>
+  <li><strong>Obstacle Avoidance Rule</strong>: If Distance Front is Low AND Turn is Left, THEN Steer is More Left.</li>
+  <li><strong>Goal-Reaching Rule</strong>: If Angle Goal is Positive AND Distance Goal is Low, THEN Steer is More Right.</li>
+</ul>
+
+<p>By combining these rules, the fuzzy logic controller effectively balances obstacle avoidance with goal-reaching behavior, ensuring smooth navigation even with noisy or imprecise sensor data.</p>
+
+<div style="display: flex; flex-wrap: wrap; gap: 5px;">
+  <img src="http://localhost:4000/assets/Img10.png" alt="Description 2" width="620" />
 </div>
 
-  
+<h2 id="simulation-results">Simulation Results</h2>
 
+<div style="display: flex; flex-wrap: wrap; gap: 5px;">
+  <img src="http://localhost:4000/assets/Img12.png" alt="Description 2" width="1000" />
 </div>
 
+<div style="text-align: center;">
+  <video width="450" controls="">
+    <source src="http://localhost:4000/assets/Vid1.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
 
+<h3 id="references-and-acknowledgment">References and Acknowledgment</h3>
 
+<ol>
+  <li>
+    <p>“Robot Navigation in Dynamic Environments using Fuzzy Logic and Trajectory Prediction Table”, Cheng-Hsiung Chinag, Chiehyi Ding</p>
+  </li>
+  <li>
+    <p>“Time-optimal, collision-free navigation of a car-like mobile robot using neuro-fuzzy approaches”, Nirmal Baran Hui, V. Mahendar, Dilip Kumar Pratihar</p>
+  </li>
+  <li>
+    <p>“A Method of Indoor Mobile Robot Navigation by Using Fuzzy Control”, Shigeki Ishikawa</p>
+  </li>
+</ol>
+
+</div>
   </main>
   <footer class="mt-auto py-3 text-center">
 

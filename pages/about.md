@@ -19,6 +19,6 @@ Hi, I am <b>Phani Kiran V</b>
 I am a robotics engineer.
 <br>
 
-<div class="row">
+<!-- <div class="row">
 {% include about/timeline.html %}
-</div>
+</div> -->

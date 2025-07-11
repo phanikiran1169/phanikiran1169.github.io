@@ -1,6 +1,6 @@
 ---
 name: Planning and control of mobile manipulator
-tools: [Python, Control, Trajectory Generation, Odometry]
+tools: [Python, Control, Trajectory Generation, Odometry, Kinematics, CoppeliaSim]
 image: /assets/Vid3.gif
 description: Simulation of a youBot performing a pick-and-place task in CoppeliaSim
 ---

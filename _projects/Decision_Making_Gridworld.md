@@ -7,7 +7,7 @@ description: Simulation of predator-prey interaction using decision-making agent
 
 ### Overview
 
-This project simulates a predator-prey pursuit in a 7×7 gridworld with obstacles. The prey is modeled as a partially observable agent using a POMDP framework, while the predator uses the A* path planning algorithm. The goal is to observe how different strategies and environmental uncertainties affect pursuit outcomes.
+This project simulates a predator-prey pursuit in a 7×7 gridworld with obstacles. The planning for prey is modeled using a POMDP framework, while the predator uses the A* path planning algorithm. The goal is to observe how different strategies and environmental uncertainties affect pursuit outcomes.
 
 Both agents operate on a grid with obstacles and simple movement rules. The prey actively plans by estimating the predator’s behavior, while the predator reacts based on known prey positions.
 
@@ -79,12 +79,12 @@ All code and simulation outputs are available at [https://github.com/phanikiran1
 
 ### References
 
-[1] Jack E. Bresenham. Algorithm for computer control of a digital plotter. *IBM Systems Journal*, 4(1):25–30, 1965.
+1. Jack E. Bresenham. Algorithm for computer control of a digital plotter. *IBM Systems Journal*, 4(1):25–30, 1965.
 
-[2] Peter E. Hart, Nils J. Nilsson, and Bertram Raphael. A formal basis for the heuristic determination of minimum cost paths. *IEEE Transactions on Systems Science and Cybernetics*, 4(2):100–107, 1968.
+2. Peter E. Hart, Nils J. Nilsson, and Bertram Raphael. A formal basis for the heuristic determination of minimum cost paths. *IEEE Transactions on Systems Science and Cybernetics*, 4(2):100–107, 1968.
 
-[3] Ugurcan Mugan and Malcolm A. MacIver. Spatial planning with long visual range benefits escape from visual predators in complex naturalistic environments. *Nature Communications*, 11(1):3057, 2020.
+3. Ugurcan Mugan and Malcolm A. MacIver. Spatial planning with long visual range benefits escape from visual predators in complex naturalistic environments. *Nature Communications*, 11(1):3057, 2020.
 
-[4] David Silver and Joel Veness. Monte-Carlo planning in large POMDPs. *Advances in Neural Information Processing Systems*, 23, 2010.
+4. David Silver and Joel Veness. Monte-Carlo planning in large POMDPs. *Advances in Neural Information Processing Systems*, 23, 2010.
 
-[5] Kaiyu Zheng and Stefanie Tellex. pomdp.py: A framework to build and solve POMDP problems. *arXiv preprint arXiv:2004.10099*, 2020.
+5. Kaiyu Zheng and Stefanie Tellex. pomdp.py: A framework to build and solve POMDP problems. *arXiv preprint arXiv:2004.10099*, 2020.

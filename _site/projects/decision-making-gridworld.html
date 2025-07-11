@@ -76,7 +76,7 @@
     <div class="col-lg-10 mx-auto mt-5 markdown-body">
   <h3 id="overview">Overview</h3>
 
-<p>This project simulates a predator-prey pursuit in a 7×7 gridworld with obstacles. The prey is modeled as a partially observable agent using a POMDP framework, while the predator uses the A* path planning algorithm. The goal is to observe how different strategies and environmental uncertainties affect pursuit outcomes.</p>
+<p>This project simulates a predator-prey pursuit in a 7×7 gridworld with obstacles. The planning for prey is modeled using a POMDP framework, while the predator uses the A* path planning algorithm. The goal is to observe how different strategies and environmental uncertainties affect pursuit outcomes.</p>
 
 <p>Both agents operate on a grid with obstacles and simple movement rules. The prey actively plans by estimating the predator’s behavior, while the predator reacts based on known prey positions.</p>
 
@@ -165,15 +165,23 @@ Chosen as 0.95.</p>
 
 <h3 id="references">References</h3>
 
-<p>[1] Jack E. Bresenham. Algorithm for computer control of a digital plotter. <em>IBM Systems Journal</em>, 4(1):25–30, 1965.</p>
-
-<p>[2] Peter E. Hart, Nils J. Nilsson, and Bertram Raphael. A formal basis for the heuristic determination of minimum cost paths. <em>IEEE Transactions on Systems Science and Cybernetics</em>, 4(2):100–107, 1968.</p>
-
-<p>[3] Ugurcan Mugan and Malcolm A. MacIver. Spatial planning with long visual range benefits escape from visual predators in complex naturalistic environments. <em>Nature Communications</em>, 11(1):3057, 2020.</p>
-
-<p>[4] David Silver and Joel Veness. Monte-Carlo planning in large POMDPs. <em>Advances in Neural Information Processing Systems</em>, 23, 2010.</p>
-
-<p>[5] Kaiyu Zheng and Stefanie Tellex. pomdp.py: A framework to build and solve POMDP problems. <em>arXiv preprint arXiv:2004.10099</em>, 2020.</p>
+<ol>
+  <li>
+    <p>Jack E. Bresenham. Algorithm for computer control of a digital plotter. <em>IBM Systems Journal</em>, 4(1):25–30, 1965.</p>
+  </li>
+  <li>
+    <p>Peter E. Hart, Nils J. Nilsson, and Bertram Raphael. A formal basis for the heuristic determination of minimum cost paths. <em>IEEE Transactions on Systems Science and Cybernetics</em>, 4(2):100–107, 1968.</p>
+  </li>
+  <li>
+    <p>Ugurcan Mugan and Malcolm A. MacIver. Spatial planning with long visual range benefits escape from visual predators in complex naturalistic environments. <em>Nature Communications</em>, 11(1):3057, 2020.</p>
+  </li>
+  <li>
+    <p>David Silver and Joel Veness. Monte-Carlo planning in large POMDPs. <em>Advances in Neural Information Processing Systems</em>, 23, 2010.</p>
+  </li>
+  <li>
+    <p>Kaiyu Zheng and Stefanie Tellex. pomdp.py: A framework to build and solve POMDP problems. <em>arXiv preprint arXiv:2004.10099</em>, 2020.</p>
+  </li>
+</ol>
 
 </div>
   </main>

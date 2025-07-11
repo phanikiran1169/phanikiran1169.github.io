@@ -1,5 +1,5 @@
 ---
-name: Planning using Dubins and RRT*
+name: Planning using dubins and RRT*
 tools: [Python, Path Planning]
 image: /assets/Img8.png
 description: 3D planning algorithm that avoids obstacles while meeting minimum turning radius and boundary conditions

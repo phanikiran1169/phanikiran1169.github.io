@@ -1,5 +1,5 @@
 ---
-name: Planning in 2D dynamic obstacle environemnt using Fuzzy logic controller
+name: Planning in 2D dynamic obstacle environemnt using fuzzy logic controller
 tools: [Matlab, Path Planning]
 image: /assets/Vid2.gif
 description: Real time planning in 2D while avoiding obstacles

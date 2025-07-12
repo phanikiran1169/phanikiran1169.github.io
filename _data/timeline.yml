@@ -1,41 +1,41 @@
 - title: Northwestern
-  from: 2024
+  from: Sep, 2024
   to: present
-  description: "Pursuing a Master's degree in Robotics."
+  description: "Master's in Mechanical Engineering with specialization in Robotics"
   image: /assets/NU_logo.png
   category: Education
 
 - title: IIT, Kharagpur
-  from: 2014
-  to: 2019
-  description: "Bachelor of Technology in Mechanical Engineering."
+  from: July, 2014
+  to: May, 2019
+  description: "Bachelor's and Master's in Aerospace Engineering"
   image: /assets/KGP_logo.png
   category: Education
 
-- title: Robotics Software Engineer, Airbus
-  from: 2022
-  to: 2024
-  description: "Developed robotic systems for aerospace manufacturing."
+- title: Airbus, India
+  from: Oct, 2022
+  to: Aug, 2024
+  description: "Robotics Software Engineer"
   image: /assets/Airbus_logo.png
   category: Work Experience
 
-- title: Avionics Software Engineer, Airbus
-  from: 2019
-  to: 2022
-  description: "Worked on avionics software and hardware integration."
+- title: Airbus, India
+  from: July, 2019
+  to: Sep, 2022
+  description: "Avionics Software Engineer"
   image: /assets/Airbus_logo.png
   category: Work Experience
 
-- title: Avionics Software Engineer, Airbus
-  from: 2019
-  to: 2022
-  description: "Worked on avionics software and hardware integration."
-  image: /assets/Img3.png
+- title: Boeing, India
+  from: May, 2018
+  to: July, 2018
+  description: "Intern at Research and Technology Center"
+  image: /assets/Boeing_logo.png
   category: Work Experience
 
-- title: Avionics Software Engineer, Airbus
-  from: 2019
-  to: 2022
-  description: "Worked on avionics software and hardware integration."
-  image: /assets/Img3.png
+- title: IISc, Bangalore
+  from: May, 2017
+  to: July, 2017
+  description: "Research Intern, Integrated Control, Guidance and Estimation Lab"
+  image: /assets/IISc_logo.png
   category: Work Experience

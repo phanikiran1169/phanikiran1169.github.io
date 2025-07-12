@@ -1,7 +1,7 @@
 ---
 name: Predator-Prey Pursuit in Gridworld
 tools: [Python, POMDP, A*, Planning]
-image: /assets/Vid4.gif
+image: /assets/Gif3.gif
 description: Simulation of predator-prey interaction using decision-making agents in a grid-based environment
 ---
 

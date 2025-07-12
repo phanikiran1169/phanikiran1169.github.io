@@ -2,28 +2,28 @@
   from: 2024
   to: present
   description: "Pursuing a Master's degree in Robotics."
-  image: /assets/Img1.png
+  image: /assets/NU_logo.png
   category: Education
 
 - title: IIT, Kharagpur
   from: 2014
   to: 2019
   description: "Bachelor of Technology in Mechanical Engineering."
-  image: /assets/Img4.png
+  image: /assets/KGP_logo.png
   category: Education
 
 - title: Robotics Software Engineer, Airbus
   from: 2022
   to: 2024
   description: "Developed robotic systems for aerospace manufacturing."
-  image: /assets/Img2.png
+  image: /assets/Airbus_logo.png
   category: Work Experience
 
 - title: Avionics Software Engineer, Airbus
   from: 2019
   to: 2022
   description: "Worked on avionics software and hardware integration."
-  image: /assets/Img3.png
+  image: /assets/Airbus_logo.png
   category: Work Experience
 
 - title: Avionics Software Engineer, Airbus

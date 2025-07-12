@@ -1,0 +1,28 @@
+<div class="col mt-4">
+  {% assign categories = site.data.timeline | group_by: "category" %}
+  {% for category in categories %}
+    <div style="margin-bottom: 3rem;">
+      <h4 style="margin-bottom: 1.5rem; text-transform: capitalize; color: #333;">{{ category.name }}</h4>
+      {% for item in category.items %}
+        <div style="display: flex; align-items: flex-start; margin-bottom: 2rem;">
+          <div style="width: 30px; height: 30px; margin-right: 20px; flex-shrink: 0;">
+            {% if item.image %}
+              <img src="{{ site.baseurl }}{{ item.image }}" alt="{{ item.title }}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 5px;">
+            {% else %}
+              <div style="width: 30px; height: 30px; background-color: #007bff; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px;">
+                {{ item.title | slice: 0 }}
+              </div>
+            {% endif %}
+          </div>
+          <div style="flex-grow: 1;">
+            <h5 style="margin-bottom: 0;">{{ item.title }}</h5>
+            <p style="color: #6c757d; margin-bottom: 0.5rem; font-size: 0.9em;">{{ item.from }} - {{ item.to }}</p>
+            {% if item.description and item.description != "" %}
+              <p style="margin-bottom: 0;">{{ item.description }}</p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div> 

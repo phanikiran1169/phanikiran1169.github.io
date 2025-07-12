@@ -12,6 +12,6 @@ weight: 2
   Hello
 <br>
 
-<!-- <div class="row">
+<div class="row">
 {% include about/timeline.html %}
-</div> -->
+</div>

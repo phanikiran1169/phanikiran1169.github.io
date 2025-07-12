@@ -1,19 +1,41 @@
 - title: Northwestern
   from: 2024
   to: present
-  description: 
-
-- title: Robotics, Airbus
-  from: 2022
-  to: 2024
-  description:
-
-- title: Avionics, Airbus
-  from: 2019
-  to: 2022
-  description: 
+  description: "Pursuing a Master's degree in Robotics."
+  image: /assets/Img1.png
+  category: Education
 
 - title: IIT, Kharagpur
   from: 2014
   to: 2019
-  description:
+  description: "Bachelor of Technology in Mechanical Engineering."
+  image: /assets/Img4.png
+  category: Education
+
+- title: Robotics Software Engineer, Airbus
+  from: 2022
+  to: 2024
+  description: "Developed robotic systems for aerospace manufacturing."
+  image: /assets/Img2.png
+  category: Work Experience
+
+- title: Avionics Software Engineer, Airbus
+  from: 2019
+  to: 2022
+  description: "Worked on avionics software and hardware integration."
+  image: /assets/Img3.png
+  category: Work Experience
+
+- title: Avionics Software Engineer, Airbus
+  from: 2019
+  to: 2022
+  description: "Worked on avionics software and hardware integration."
+  image: /assets/Img3.png
+  category: Work Experience
+
+- title: Avionics Software Engineer, Airbus
+  from: 2019
+  to: 2022
+  description: "Worked on avionics software and hardware integration."
+  image: /assets/Img3.png
+  category: Work Experience

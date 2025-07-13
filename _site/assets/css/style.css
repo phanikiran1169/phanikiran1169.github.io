@@ -133,7 +133,7 @@ body { font-family: "Poppins", sans-serif; }
 .navbar-brand { margin-bottom: -14px; }
 .navbar-brand::after { margin-top: -0.25em; }
 
-.markdown-body h1, .markdown-body h2 { margin-top: 32px; }
+.markdown-body h1, .markdown-body h2 { margin-top: 32px; color: #007bff !important; }
 .markdown-body hr { background: #6c757d; }
 .markdown-body img:not(.emoji) { display: block; max-width: 100%; height: auto; margin: 1rem auto; }
 .markdown-body .video { position: relative; padding-bottom: 56.25%; margin-bottom: 1rem; width: 100%; }
@@ -161,6 +161,25 @@ body { font-family: "Poppins", sans-serif; }
 
 /* Project description gray */
 .project.card .card-text { color: #6c757d; }
+
+/* General headings blue */
+h1, h2, h3, h4, h5, h6 { color: #007bff !important; }
+.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6 { color: #007bff !important; }
+div h1, div h2, div h3, div h4, div h5, div h6 { color: #007bff !important; }
+
+/* Footer social icons colored by default */
+.social-email { color: #ff8c00 !important; transition: color 0.3s ease; }
+.social-email:hover { color: #e67e00 !important; }
+
+.social-github { color: #333333 !important; transition: color 0.3s ease; }
+.social-github:hover { color: #000000 !important; }
+
+.social-linkedin { color: #007bb5 !important; transition: color 0.3s ease; }
+.social-linkedin:hover { color: #005885 !important; }
+
+/* Footer text styling */
+.footer-text { color: #007bff !important; }
+.footer-heart { color: #dc3545 !important; }
 
 .timeline-body { position: relative; border-radius: 0 15px 15px 0; padding: 5px 0; }
 .timeline-body:after { content: ""; width: 4px; height: 100%; background-color: #007bff; position: absolute; left: -4px; top: 0; }

@@ -21,6 +21,7 @@ I built Picar during an overnight hackathon at Carnegie Mellon Univeristy. It’
 <div style="max-width: 600px; margin: 20px auto;">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/Img31.jpeg" alt="Picar Assembly" style="width: 100%; height: auto; border: 2px solid #fff; border-radius: 0px;">
 </div>
+<p align="center">Hello Picar !!</p>
 
 ## Results
 

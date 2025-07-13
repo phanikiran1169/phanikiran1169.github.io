@@ -122,7 +122,7 @@ body { font-family: "Poppins", sans-serif; }
 
 .circle-image { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: center; }
 
-.link-after, .nav-link::after, .navbar-brand::after, .nav-item.active::after { content: ""; display: block; height: 0.15em; background: #007bff; }
+.link-after, .nav-link::after, .navbar-brand::after, .nav-item.active::after { content: ""; display: block; height: 0.15em; background: #ffffff; }
 
 .nav-link::after, .navbar-brand::after { width: 0; transition: width 0.35s; }
 .nav-link:hover::after, .navbar-brand:hover::after { width: 100%; }
@@ -168,33 +168,35 @@ h1, h2, h3, h4, h5, h6 { color: #007bff !important; }
 div h1, div h2, div h3, div h4, div h5, div h6 { color: #007bff !important; }
 
 /* Footer social icons colored by default */
-.social-email { color: #ff8c00 !important; transition: color 0.3s ease; }
-.social-email:hover { color: #e67e00 !important; }
+.social-email { color: #ffffff !important; transition: color 0.3s ease; }
+.social-email:hover { color: #ffffff !important; }
 
-.social-github { color: #333333 !important; transition: color 0.3s ease; }
-.social-github:hover { color: #000000 !important; }
+.social-github { color: #ffffff !important; transition: color 0.3s ease; }
+.social-github:hover { color: #ffffff !important; }
 
-.social-linkedin { color: #007bb5 !important; transition: color 0.3s ease; }
-.social-linkedin:hover { color: #005885 !important; }
+.social-linkedin { color: #ffffff !important; transition: color 0.3s ease; }
+.social-linkedin:hover { color: #ffffff !important; }
 
 /* Footer text styling */
-.footer-text { color: #007bff !important; }
+.footer-text { color: #ffffff !important; }
 
 /* Header and Footer background colors - full width */
 .navbar-themed { 
-  background-color: #f8f9fa !important; 
+  background: linear-gradient(135deg, #007bff 0%, #339dff 50%, #007bff 100%) !important; 
   position: relative;
   left: 50%;
   right: 50%;
   margin-left: -50vw !important;
   margin-right: -50vw !important;
+  margin-top: 0rem !important;
+  padding-top: 0rem !important;
   width: 100vw !important;
   padding-left: calc(50vw - 50%) !important;
   padding-right: calc(50vw - 50%) !important;
 }
 
 footer { 
-  background-color: #f8f9fa !important; 
+  background: linear-gradient(135deg, #007bff 0%, #339dff 50%, #007bff 100%) !important;
   position: relative;
   left: 50%;
   right: 50%;
@@ -206,10 +208,10 @@ footer {
 }
 
 /* Orange text colors for navbar and footer */
-.navbar-brand, .navbar-brand h5 { color: #007bff !important; }
-.nav-link { color: #007bff !important; }
-.nav-link:hover { color: #007bff !important; }
-.nav-link.active { color: #007bff !important; }
+.navbar-brand, .navbar-brand h5 { color: #ffffff !important; }
+.nav-link { color: #ffffff !important; }
+.nav-link:hover { color: #ffffff !important; }
+.nav-link.active { color: #ffffff !important; }
 
 .timeline-body { position: relative; border-radius: 0 15px 15px 0; padding: 5px 0; }
 .timeline-body:after { content: ""; width: 4px; height: 100%; background-color: #007bff; position: absolute; left: -4px; top: 0; }

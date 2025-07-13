@@ -162,17 +162,17 @@ h1, h2, h3, h4, h5, h6 { color: #007bff !important; }
 div h1, div h2, div h3, div h4, div h5, div h6 { color: #007bff !important; }
 
 /* Footer social icons colored by default */
-.social-email { color: #ff8c00 !important; transition: color 0.3s ease; }
-.social-email:hover { color: #e67e00 !important; }
+.social-email { color: #ffffff !important; transition: color 0.3s ease; }
+.social-email:hover { color: #ffffff !important; }
 
-.social-github { color: #333333 !important; transition: color 0.3s ease; }
-.social-github:hover { color: #000000 !important; }
+.social-github { color: #ffffff !important; transition: color 0.3s ease; }
+.social-github:hover { color: #ffffff !important; }
 
-.social-linkedin { color: #007bb5 !important; transition: color 0.3s ease; }
-.social-linkedin:hover { color: #005885 !important; }
+.social-linkedin { color: #ffffff !important; transition: color 0.3s ease; }
+.social-linkedin:hover { color: #ffffff !important; }
 
 /* Footer text styling */
-.footer-text { color: #007bff !important; }
+.footer-text { color: #ffffff !important; }
 
   /* Manually align right-side navbar items */
   .navbar-nav.ml-auto {

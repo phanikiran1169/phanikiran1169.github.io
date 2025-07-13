@@ -180,8 +180,13 @@ div h1, div h2, div h3, div h4, div h5, div h6 { color: #007bff !important; }
 /* Footer text styling */
 .footer-text { color: #ffffff !important; }
 
-/* Header and Footer background colors - full width */
-.navbar-themed { 
+  /* Manually align right-side navbar items */
+  .navbar-nav.ml-auto {
+    margin-top: 8px !important;
+  }
+  
+  /* Header and Footer background colors - full width */
+  .navbar-themed { 
   background: linear-gradient(135deg, #007bff 0%, #339dff 50%, #007bff 100%) !important; 
   position: relative;
   left: 50%;

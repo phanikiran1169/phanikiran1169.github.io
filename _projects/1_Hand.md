@@ -2,7 +2,7 @@
 name: Design and Control of Robotic Hand
 tools: [Python, C++, Control, Kinematics, CAN, SPI, UART, SEA]
 image: /assets/Gif5.gif
-description: Robotic hand system featuring a 2-DOF wrist, dexterous and power fingers, a palm for compliant grasping, and a forearm housing SEA modules for backdrivable actuation
+description: Robotic hand featuring a wrist, dexterous and power fingers, and a palm for compliant grasping
 ---
 
 ### Overview
@@ -40,6 +40,15 @@ The code for milestone 1 is available at [https://github.com/NU-RDS/team-n-testb
 ### Results
 
 <img src="{{ site.url }}{{ site.baseurl }}/assets/Img26.png" alt="SW Architecture" width="650"/>
+<p align="center">Team N robot finger</p>
+
+<div style="text-align: center;">
+  <video width="650" controls>
+    <source src="{{ site.url }}{{ site.baseurl }}/assets/Vid12.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+<p align="center">Finger max force test</p>
 
 ### Milestone 2 – Full Hand Integration
 
@@ -63,6 +72,7 @@ In the second milestone, all teams worked together to build the full robotic han
 - **Communication Library**: Custom CAN protocol ([rds25-comms](https://github.com/NU-RDS/rds25-comms)) for communication across all MCUs  
 
 <img src="{{ site.url }}{{ site.baseurl }}/assets/Img23.png" alt="SW Architecture" width="650"/>
+<p align="center">High level software architecture</p>
 
 #### My Contributions
 
@@ -79,7 +89,7 @@ The code for milestone 2 is available at [https://github.com/NU-RDS/rds25-projec
 ### Results
 
 <img src="{{ site.url }}{{ site.baseurl }}/assets/Img24.png" alt="SW Architecture" width="650"/>
-
+<p align="center">Robot hand holding a tool</p>
 
 <div style="text-align: center;">
   <video width="650" controls>
@@ -96,14 +106,6 @@ The code for milestone 2 is available at [https://github.com/NU-RDS/rds25-projec
   </video>
 </div>
 <p align="center">Pitch Control</p>
-
-<div style="text-align: center;">
-  <video width="650" controls>
-    <source src="{{ site.url }}{{ site.baseurl }}/assets/Vid9.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</div>
-<p align="center">Power finger grasp test</p>
 
 ### Team
 

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="3_decision_making_gridworld">
+  <meta property="og:description" content="Simulation of predator-prey interaction using decision-making agents in a grid-based environment">
+  <meta property="og:image" content="https://avatars2.githubusercontent.com/u/41103290">
+  <title>3_decision_making_gridworld</title>
+  <meta name="description" content="Simulation of predator-prey interaction using decision-making agents in a grid-based environment">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+  <!-- Theme style -->
+  <script src="/assets/js/theme.js"></script>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <!-- Animate CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body class="h-100 d-flex flex-column">
+  <main class="flex-shrink-0 container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-themed">
+      <a class="navbar-brand" href="/"><h5><b>Phani Kiran V</b></h5></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-1x fa-bars text-themed"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+          <a class="nav-item nav-link " href="/projects/">Projects</a>
+          <a class="nav-item nav-link " href="/about/">About</a>
+          <a class="nav-item nav-link " href="/resume/">Resume</a>
+          <!-- Theme toggle button removed -->
+        </div>
+      </div>
+    </nav>
+    
+    <div class="col-lg-10 mx-auto mt-5 markdown-body">
+  <h3 id="overview">Overview</h3>
+
+<p>This project simulates a predator-prey pursuit in a 7×7 gridworld with obstacles. The planning for prey is modeled using a POMDP framework, while the predator uses the A* path planning algorithm. The goal is to observe how different strategies and environmental uncertainties affect pursuit outcomes.</p>
+
+<p>Both agents operate on a grid with obstacles and simple movement rules. The prey actively plans by estimating the predator’s behavior, while the predator reacts based on known prey positions.</p>
+
+<p><img src="http://localhost:4000/assets/Img16.png" alt="Sim Env" width="400" /></p>
+<p align="center">This image shows the simulated gridworld in the project. The red marker represents the
+predator, the blue marker represents the prey, and the green marker indicates the target. The black
+cells represent obstacles, while the white cells are free spaces</p>
+
+<h3 id="prey-behavior">Prey Behavior</h3>
+
+<p>The planning for the prey is formulated using a Partially Observable Markov Decision Process (POMDP), consisting of the following components:</p>
+
+<ul>
+  <li>
+    <p><strong>State space:</strong> The set of states consists of the predator and prey locations, represented by the 2D coordinates (x, y).</p>
+  </li>
+  <li>
+    <p><strong>Action space:</strong><br />
+– Movement actions in four cardinal directions (East, West, North, South).<br />
+– Look and Find actions allow the prey to observe the environment, gather new information, and update its beliefs when it reaches the target.</p>
+  </li>
+  <li>
+    <p><strong>Observation space:</strong><br />
+– The predator’s position, target, and obstacles.<br />
+– If any of these are observed, their positions (or poses) are known; otherwise, they are not included in the set.<br />
+– The Bresenham line algorithm is used by the prey to determine whether the target or predator is within its line of sight, provided it is not blocked by an obstacle.</p>
+  </li>
+  <li>
+    <p><strong>Belief state:</strong><br />
+A histogram-based estimate of the prey’s and target’s locations, updated based on observation history.</p>
+  </li>
+  <li>
+    <p><strong>Reward function:</strong><br />
+– Small negative reward (−1) for movement, look, or find actions.<br />
+– Large negative reward (−1000) if caught by the predator or colliding with an obstacle.<br />
+– Large positive reward (+1000) for reaching the target.</p>
+  </li>
+  <li>
+    <p><strong>Transition model:</strong><br />
+The prey’s action leads to a probabilistic transition between states.</p>
+  </li>
+  <li>
+    <p><strong>Discount factor:</strong><br />
+Chosen as 0.95.</p>
+  </li>
+</ul>
+
+<p>The POMDP is solved using PO-UCT (Partially Observable Upper Confidence Bounds for Trees), a Monte Carlo Tree Search algorithm, implemented with the <code class="language-plaintext highlighter-rouge">pomdp_py</code> library.</p>
+
+<h3 id="predator-behavior">Predator Behavior</h3>
+
+<p>The predator always knows the prey’s location and plans its movement using the A* algorithm. It moves one step at a time toward the prey, aiming to minimize distance. The prey’s uncertain motion is modeled in a way similar to its “look” and “find” actions.</p>
+
+<h3 id="simulation-setup">Simulation Setup</h3>
+
+<p>At each time step of the episode the following occurs:</p>
+
+<ul>
+  <li>
+    <p>The prey takes an action based on its policy. Two uncertainties may arise:<br />
+– The positions of the target or predator may be unknown.<br />
+– The predator’s motion may not be fully predictable.</p>
+  </li>
+  <li>
+    <p>If the prey reaches the target or is caught by the predator, the episode ends.</p>
+  </li>
+  <li>
+    <p>If the episode continues, the prey receives a new observation and updates its belief state.</p>
+  </li>
+  <li>
+    <p>The prey performs forward simulations, constructing a planning tree by simulating a fixed number of states (10).</p>
+  </li>
+</ul>
+
+<p><img src="http://localhost:4000/assets/Img17.png" alt="POMDP Control Flow" width="500" /></p>
+<p align="center">POMDP Control Flow</p>
+
+<h3 id="results">Results</h3>
+
+<p><img src="http://localhost:4000/assets/Img18.png" alt="Heatmap" width="650" /></p>
+<p align="center">Heatmap of prey and predator over 100 simulations with color density proportional to the frequency of predator/prey over a cell</p>
+
+<h3 id="code">Code</h3>
+
+<p>All code and simulation outputs are available at <a href="https://github.com/phanikiran1169/decision_making_gridworld">https://github.com/phanikiran1169/decision_making_gridworld</a></p>
+
+<h3 id="references">References</h3>
+
+<ol>
+  <li>
+    <p>Jack E. Bresenham. Algorithm for computer control of a digital plotter. <em>IBM Systems Journal</em>, 4(1):25–30, 1965.</p>
+  </li>
+  <li>
+    <p>Peter E. Hart, Nils J. Nilsson, and Bertram Raphael. A formal basis for the heuristic determination of minimum cost paths. <em>IEEE Transactions on Systems Science and Cybernetics</em>, 4(2):100–107, 1968.</p>
+  </li>
+  <li>
+    <p>Ugurcan Mugan and Malcolm A. MacIver. Spatial planning with long visual range benefits escape from visual predators in complex naturalistic environments. <em>Nature Communications</em>, 11(1):3057, 2020.</p>
+  </li>
+  <li>
+    <p>David Silver and Joel Veness. Monte-Carlo planning in large POMDPs. <em>Advances in Neural Information Processing Systems</em>, 23, 2010.</p>
+  </li>
+  <li>
+    <p>Kaiyu Zheng and Stefanie Tellex. pomdp.py: A framework to build and solve POMDP problems. <em>arXiv preprint arXiv:2004.10099</em>, 2020.</p>
+  </li>
+</ol>
+
+</div>
+    
+  </main>
+  
+  <footer class="mt-auto py-3 text-center">
+    <small class="footer-text mb-2">
+      <i class="fas fa-code"></i> by <strong>Phani Kiran V</strong>
+    </small>
+    <div class="container-fluid justify-content-center">
+      
+        <a class="social mx-1 social-email" href="mailto:phanikiran@u.northwestern.edu">
+          <i class="fas fa-envelope fa-1x"></i>
+        </a>
+      
+      
+        <a class="social mx-1 social-github" href="https://www.github.com/phanikiran1169">
+          <i class="fab fa-github fa-1x"></i>
+        </a>
+      
+      
+        <a class="social mx-1 social-linkedin" href="https://www.linkedin.com/in/phani-kiran-v/">
+          <i class="fab fa-linkedin-in fa-1x"></i>
+        </a>
+      
+    </div>
+    <small id="attribution">
+      theme <a href="https://github.com/yousinix/portfolYOU">portfolYOU</a>
+    </small>
+  </footer>
+  
+  <!-- GitHub Buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- jQuery CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Popper.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+  <!-- Bootstrap JS CDN -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- wow.js CDN & Activation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+  <script> new WOW().init(); </script>
+  <!-- Initialize all tooltips -->
+  <script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
+</body>
+</html> 

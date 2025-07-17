@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="01_hand">
+  <meta property="og:description" content="Robotic hand featuring a wrist, dexterous and power fingers, and a palm for compliant grasping">
+  <meta property="og:image" content="https://avatars2.githubusercontent.com/u/41103290">
+  <title>01_hand</title>
+  <meta name="description" content="Robotic hand featuring a wrist, dexterous and power fingers, and a palm for compliant grasping">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+  <!-- Theme style -->
+  <script src="/assets/js/theme.js"></script>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <!-- Animate CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body class="h-100 d-flex flex-column">
+  <main class="flex-shrink-0 container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-themed">
+      <a class="navbar-brand" href="/"><h5><b>Phani Kiran V</b></h5></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-1x fa-bars text-themed"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+          <a class="nav-item nav-link " href="/projects/">Projects</a>
+          <a class="nav-item nav-link " href="/about/">About</a>
+          <a class="nav-item nav-link " href="/resume/">Resume</a>
+          <!-- Theme toggle button removed -->
+        </div>
+      </div>
+    </nav>
+    
+    <div class="col-lg-10 mx-auto mt-5 markdown-body">
+  <h3 id="overview">Overview</h3>
+
+<p>This was a two-quarter course project focused on designing and controlling a robotic hand. The work was carried out in two phases. In the first milestone, three teams (each with 6–7 members) were tasked with building and controlling a 2-DOF tendon-driven finger within 3 weeks. In the second milestone, all 20 students came together to build a complete robotic hand consisting of:</p>
+
+<ul>
+  <li>A 2-DOF wrist (pitch and yaw)</li>
+  <li>A forearm housing all the motors and series elastic actuators</li>
+  <li>A 4-DOF dexterous finger</li>
+  <li>A 1-DOF power finger</li>
+</ul>
+
+<h3 id="milestone-1--finger-prototype">Milestone 1 – Finger Prototype</h3>
+
+<p>I was part of the N team, where we had to design a 2-DOF finger using an <strong>N-routing</strong> scheme — the number of actuators matched the number of independently controlled joints.</p>
+
+<h4 id="key-components">Key Components</h4>
+
+<ul>
+  <li><strong>Motors</strong>: Brushless outrunners with 22.6:1 gear ratio, controlled via ODrive</li>
+  <li><strong>Encoders</strong>: AS5147 magnetic encoders</li>
+  <li><strong>Finger</strong>: Tendon-driven with modular routing</li>
+  <li><strong>Microcontroller</strong>: Teensy 4.x (CAN for motor control, SPI for encoder feedback)</li>
+  <li><strong>Interface</strong>: USB connection to a host PC for command input and data visualization</li>
+</ul>
+
+<h4 id="my-contributions">My Contributions</h4>
+
+<ul>
+  <li>Set up all electrical connections</li>
+  <li>Controlled motors using ODrive over CAN via Teensy</li>
+  <li>Implemented finger kinematics and encoder integration using SPI</li>
+  <li>Tuned PID gains for smooth joint control</li>
+</ul>
+
+<h3 id="code">Code</h3>
+
+<p>The code for milestone 1 is available at <a href="https://github.com/NU-RDS/team-n-testbench">https://github.com/NU-RDS/team-n-testbench</a></p>
+
+<h3 id="results">Results</h3>
+
+<p><img src="http://localhost:4000/assets/Img26.png" alt="SW Architecture" width="650" /></p>
+<p align="center">Team N robot finger</p>
+
+<div style="text-align: center;">
+  <video width="650" controls="">
+    <source src="http://localhost:4000/assets/Vid12.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
+<p align="center">Finger max force test</p>
+
+<h3 id="milestone-2--full-hand-integration">Milestone 2 – Full Hand Integration</h3>
+
+<p>In the second milestone, all teams worked together to build the full robotic hand. This included the integration of the wrist, fingers, palm, and forearm along with a custom embedded control stack.</p>
+
+<h4 id="key-components-1">Key Components</h4>
+
+<ul>
+  <li>
+    <p><strong>Dexterous Finger</strong>: N+1 configuration (3 DOF + passively actuated MCP joint)</p>
+  </li>
+  <li><strong>Power Finger</strong>: Underactuated mechanism using 2 × 5-bar linkages</li>
+  <li><strong>Wrist</strong>: 2 DOF (pitch and yaw), supports routing of seven tendons</li>
+  <li><strong>Palm</strong>: Provides a compliant surface and connects wrist and fingers</li>
+  <li><strong>Forearm</strong>: Houses multiple SEA modules (motor + torsional spring + encoder) for backdrivable actuation</li>
+</ul>
+
+<h4 id="software-architecture">Software Architecture</h4>
+
+<ul>
+  <li><strong>User Interface</strong>: GUI for sending commands, tuning PID gains, and real-time plotting/logging</li>
+  <li><strong>High-Level MCU</strong>: Parses commands, handles kinematics, and runs position PID control</li>
+  <li><strong>Low-Level MCU</strong>: Runs force control loop using SEA data and sends torque/current commands to motors via ODrive Pro</li>
+  <li><strong>Palm/Sensor Boards</strong>: Collect joint and force data and pass it to the high-level controller</li>
+  <li><strong>Communication Library</strong>: Custom CAN protocol (<a href="https://github.com/NU-RDS/rds25-comms">rds25-comms</a>) for communication across all MCUs</li>
+</ul>
+
+<p><img src="http://localhost:4000/assets/Img23.png" alt="SW Architecture" width="650" /></p>
+<p align="center">High level software architecture</p>
+
+<h4 id="my-contributions-1">My Contributions</h4>
+
+<ul>
+  <li>Helped design the full software architecture</li>
+  <li>Worked out the kinematics for the full hand</li>
+  <li>Developed both position and force PID control</li>
+  <li>Integrated AS5147 encoders via SPI and load cells via UART with the MCU</li>
+  <li>Characterized the torsional springs in the SEA modules</li>
+  <li>Handled motor communication with the ODrives using CAN on Teensy 4.0/4.1</li>
+</ul>
+
+<h3 id="code-1">Code</h3>
+<p>The code for milestone 2 is available at <a href="https://github.com/NU-RDS/rds25-project">https://github.com/NU-RDS/rds25-project</a></p>
+
+<h3 id="results-1">Results</h3>
+
+<p><img src="http://localhost:4000/assets/Img24.png" alt="SW Architecture" width="650" /></p>
+<p align="center">Robot hand holding a tool</p>
+
+<div style="text-align: center;">
+  <video width="650" controls="">
+    <source src="http://localhost:4000/assets/Vid7.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
+<p align="center">Yaw Control</p>
+
+<div style="text-align: center;">
+  <video width="650" controls="">
+    <source src="http://localhost:4000/assets/Vid8.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
+<p align="center">Pitch Control</p>
+
+<h3 id="team">Team</h3>
+
+<p><img src="http://localhost:4000/assets/Img25.jpg" alt="Team" width="650" /></p>
+
+</div>
+    
+  </main>
+  
+  <footer class="mt-auto py-3 text-center">
+    <small class="footer-text mb-2">
+      <i class="fas fa-code"></i> by <strong>Phani Kiran V</strong>
+    </small>
+    <div class="container-fluid justify-content-center">
+      
+        <a class="social mx-1 social-email" href="mailto:phanikiran@u.northwestern.edu">
+          <i class="fas fa-envelope fa-1x"></i>
+        </a>
+      
+      
+        <a class="social mx-1 social-github" href="https://www.github.com/phanikiran1169">
+          <i class="fab fa-github fa-1x"></i>
+        </a>
+      
+      
+        <a class="social mx-1 social-linkedin" href="https://www.linkedin.com/in/phani-kiran-v/">
+          <i class="fab fa-linkedin-in fa-1x"></i>
+        </a>
+      
+    </div>
+    <small id="attribution">
+      theme <a href="https://github.com/yousinix/portfolYOU">portfolYOU</a>
+    </small>
+  </footer>
+  
+  <!-- GitHub Buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- jQuery CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Popper.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+  <!-- Bootstrap JS CDN -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- wow.js CDN & Activation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+  <script> new WOW().init(); </script>
+  <!-- Initialize all tooltips -->
+  <script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
+</body>
+</html> 

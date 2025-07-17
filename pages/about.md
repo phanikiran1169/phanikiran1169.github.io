@@ -11,7 +11,7 @@ Hello, Thank you for stopping by. I am Phani Kiran, a roboticist and grad studen
 
 Before Northwestern, I worked full-time at [Airbus](https://www.airbus.com/en). I started in avionics, contributing to safety-critical software for the warning systems of A320, A330, and A340 aircraft. Later, I transitioned into robotics to follow my passion—collaborating with research labs and teams across Airbus and contributing to the open-source [Humanoid Path Planner](https://humanoid-path-planner.github.io/hpp-doc/) Library.
 
-My hands-on experience with real robots comes from my time at Airbus, my graduate studies at Northwestern, and my undergraduate studies at [IIT Kharagpur](https://www.iitkgp.ac.in/). I am particularly interested in learning, control, planning and their applications in robotics.
+My hands-on experience with real robots comes from my time at Airbus, my graduate studies at [Northwestern](https://www.northwestern.edu/), and my undergraduate studies at [IIT Kharagpur](https://www.iitkgp.ac.in/). I am particularly interested in learning, control, planning and their applications in robotics.
 
 If you are curious about my work, want to collaborate, or just feel like saying hello—I will be glad to hear from you.
 
